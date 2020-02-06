@@ -1,0 +1,73 @@
+﻿body {
+
+}
+h2 {
+    text-align: center;
+}
+h3{
+    text-align:center;
+}
+
+h4 {
+    text-align: center;
+}
+.setcenter{
+    text-align:center;
+}
+
+#menudiv {
+    text-align: center;
+    color: rgb(217,83,79);
+    font: bold;
+    width: 70%;
+    height: 100%;
+    background-color: ghostwhite;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(217,83,79);
+}
+
+.big-container {
+    margin-top: 5%;
+
+}
+.menu-items {
+    margin-top: 3%;
+    
+}
+.pay-text {
+    margin-top: 5%;
+    text-align: center;
+    color: rgb(217,83,79);
+    font: bold;
+    width: 70%;
+    height: 100%;
+    background-color: ghostwhite;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(217,83,79);
+}
+#customerbasket {
+    color: rgb(217,83,79);
+    font: bold;
+    width: 50%;
+    height: 100%;
+    background-color: ghostwhite;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(217,83,79);
+}
+.table-css {
+    color: rgb(217,83,79);
+}
+
+.table-css a {
+    color: white;
+    text-decoration: none;
+}

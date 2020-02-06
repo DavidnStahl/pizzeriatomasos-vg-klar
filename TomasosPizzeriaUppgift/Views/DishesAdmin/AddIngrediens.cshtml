@@ -1,0 +1,28 @@
+﻿@model Produkt
+
+<div class="card" style="margin-top:5%">
+    <form asp-action="AddIngrediens" asp-controller="DishesAdmin" method="post">
+        <div class="card-body">
+            <h5 class="card-title">
+                Skapa ny ingrediens
+            </h5>
+            @if (ViewBag.Message == "true")
+            {
+                <span>Ingrediens finns redan</span>
+            }
+            <span asp-validation-for="@Model.ProduktNamn"></span>
+            <div class="input-group">
+                <div class="input-group-prepend">
+
+                    <span class="input-group-text" id="">Ingrediens:</span>
+                </div>
+                <input type="text" class="form-control" asp-for="@Model.ProduktNamn">
+            </div>
+            <br />
+            <input type="submit" class="btn btn-primary" value="Spara">
+
+
+        </div>
+    </form>
+
+</div>

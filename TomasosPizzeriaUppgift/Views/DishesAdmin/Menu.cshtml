@@ -1,0 +1,105 @@
+﻿@model MenuPage
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/AdminOrders.css" asp-append-version="true" />
+
+
+<div class="align-content-center bg-white admin-container2">
+    <h1>@ViewData["Title"]</h1>
+    <div class="text-center text-black"><h2 class="text-black">Lista på maträtter</h2></div>
+    <div class="text-left info-margin">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">
+
+                        <a type="button" class="btn btn-success" asp-action="AddNewDish" asp-controller="DishesAdmin">Lägg till ny maträtt</a>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        <a type="button" class="btn btn-success" asp-action="AddIngrediens" asp-controller="DishesAdmin">Lägg till ny Ingrediens</a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">
+
+                        <div class="btn-group">
+
+                            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (var item in Model.Ingredienses)
+                                {
+                                    <li><a class="dropdown-item" asp-action="RemoveIngrediens" asp-controller="DishesAdmin" asp-route-id="@item.ProduktId">@item.ProduktNamn</a></li>
+                                }
+
+
+                            </ul>
+
+                        </div>
+                        &nbsp Ta bort vald ingrediens
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Maträtt typ</th>
+                    <th scope="col">Namn</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var matratt in Model.Matratter)
+                {
+                    <tr>
+
+                        <td>@Model.mattratttyper[matratt.MatrattTyp - 1].Beskrivning</td>
+                        <td>@matratt.MatrattNamn</td>
+                        <td>
+                            <a class="btn btn-primary" type="button" asp-action="EditDish" asp-controller="DishesAdmin" asp-route-id="@matratt.MatrattId">Ändra</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" type="button" asp-action="DeleteDish" asp-controller="DishesAdmin" asp-route-id="@matratt.MatrattId">Ta bort</a>
+                        </td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

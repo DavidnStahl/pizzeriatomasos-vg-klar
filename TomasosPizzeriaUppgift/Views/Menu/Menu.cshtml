@@ -1,0 +1,96 @@
+﻿@model TomasosPizzeriaUppgift.ViewModels.MenuPage
+@{
+
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var i = 0;
+
+}
+
+
+<link href="~/css/MenuPage.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+
+
+<div class="d-flex justify-content-center big-container">
+
+    <div id="menudiv">
+        <h2>Tomasos Pizzeria Meny</h2>
+
+        <section class="menu-items">
+            @foreach (var matrratttyp in Model.mattratttyper)
+            {
+
+                <hr />
+                <h4>@matrratttyp.Beskrivning</h4>
+                <br />
+                @foreach (var matratt in Model.Matratter)
+                {
+
+                    if (matratt.MatrattTypNavigation.Beskrivning == @matrratttyp.Beskrivning)
+                    {
+                        <h5>@matratt.MatrattNamn</h5>
+                        <br />
+                        <label>Ingredienser: </label>
+                        foreach (var ingrediens in Model.Ingredins.MatrattProdukt)
+                        {
+                            if (ingrediens.MatrattId == matratt.MatrattId)
+                            {
+                                @if (i == 0)
+                                {
+                                    <label>&nbsp @ingrediens.Produkt.ProduktNamn,</label>
+                                    i++;
+                                }
+                                else if (i == 1)
+                                {
+                                    <label>&nbsp @ingrediens.Produkt.ProduktNamn</label>
+                                    i++;
+                                }
+                                else
+                                {
+                                    <label>&nbsp ,@ingrediens.Produkt.ProduktNamn</label>
+                                    i++;
+
+                                }
+
+                            }
+                        }
+                        <br />
+                        <label>Pris:&nbspKr @matratt.Pris</label>
+                        <br />
+
+                        <a type="button" class="btn btn-success" asp-action="AddItemCustomerBasket" asp-controller="Menu" asp-route-id="@matratt.MatrattId"
+                           data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#partialview">Lägg till</a>
+                        <br />
+                        <br />
+                        <br />
+                    }
+
+                }
+            }
+
+        </section>
+
+    </div>
+
+
+    <div id="customerbasket">
+        <h3 class="addhere">Beställning:</h3>
+
+        <div class="text-center">
+            <div id="partialview"></div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js" asp-append-version="true"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.unobtrusive-ajax/3.2.5/jquery.unobtrusive-ajax.min.js"></script>
+}
