@@ -146,6 +146,16 @@ namespace TomasosPizzeriaUppgift.Models.IdentityLogic
             return user.IsInRole("PremiumUser");  
         }
 
-       
+        public async void Delete(string userName, UserManager<IdentityUser> userManager)
+        {
+            var user = await userManager.FindByNameAsync(userName);
+            using(TomasosContext db = new TomasosContext())
+            {
+                var userRoles = db.UserRoles.Where(r => r.UserId == user.Id);
+                db.RemoveRange(userRoles);
+                db.Remove(user);
+                db.SaveChanges();
+            }
+        }
     }
 }

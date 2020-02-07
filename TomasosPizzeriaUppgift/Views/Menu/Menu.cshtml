@@ -7,7 +7,9 @@
 }
 
 
-<link href="~/css/MenuPage.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+<link href="~/css/MenuPage.css" rel="stylesheet" type="text/css" />
+
+
 
 
 <div class="d-flex justify-content-center big-container">
@@ -24,7 +26,7 @@
                 <br />
                 @foreach (var matratt in Model.Matratter)
                 {
-
+                    i = 0;
                     if (matratt.MatrattTypNavigation.Beskrivning == @matrratttyp.Beskrivning)
                     {
                         <h5>@matratt.MatrattNamn</h5>
@@ -36,17 +38,12 @@
                             {
                                 @if (i == 0)
                                 {
-                                    <label>&nbsp @ingrediens.Produkt.ProduktNamn,</label>
-                                    i++;
-                                }
-                                else if (i == 1)
-                                {
                                     <label>&nbsp @ingrediens.Produkt.ProduktNamn</label>
                                     i++;
                                 }
                                 else
                                 {
-                                    <label>&nbsp ,@ingrediens.Produkt.ProduktNamn</label>
+                                    <label>,&nbsp @ingrediens.Produkt.ProduktNamn</label>
                                     i++;
 
                                 }
@@ -82,8 +79,9 @@
 
 </div>
 @section Scripts {
-
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" asp-append-version="true"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

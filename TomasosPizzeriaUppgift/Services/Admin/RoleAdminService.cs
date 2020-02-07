@@ -55,10 +55,11 @@ namespace TomasosPizzeriaUppgift.Services
 
 
         }
-        public void DeleteUser(string userName, HttpRequest request, HttpResponse response)
+        public void DeleteUser(string userName, UserManager<IdentityUser> userManager, HttpRequest request, HttpResponse response)
         {
-            var customer = _repository.GetAll().FirstOrDefault(r => r.AnvandarNamn == userName);
+            var customer = _repository.GetByUsername(userName);
             _repository.Delete(customer);
+            _identity.Delete(userName,userManager);
             //_cache.ResetCookie(request, response);
         }
         public void ChangeRoleTypeUser(string changeRoleTo, string id, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)

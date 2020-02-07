@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TomasosPizzeriaUppgift.Interface;
 using TomasosPizzeriaUppgift.ViewModels;
 using System.Data.SqlClient;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace TomasosPizzeriaUppgift.Models.Repository
@@ -30,6 +30,15 @@ namespace TomasosPizzeriaUppgift.Models.Repository
                db.Kund.Update(customer).Context.SaveChanges();
             }
         }
+        public Kund GetByUsername(string userName)
+        {
+            using (TomasosContext db = new TomasosContext())
+            {
+                return db.Kund.FirstOrDefault(r => r.AnvandarNamn == userName);
+            }
+               
+
+        }
         public List<Kund> GetAll()
         {
             using(TomasosContext db = new TomasosContext())
@@ -38,11 +47,17 @@ namespace TomasosPizzeriaUppgift.Models.Repository
             }
 
         }
-        public void Delete(Kund customer)
+        public void Delete(Kund c)
         {
             using (TomasosContext db = new TomasosContext())
             {
-                db.Kund.Remove(_context.Kund.Include(b => b.Bestallning).FirstOrDefault(r => r.KundId == customer.KundId)).Context.SaveChanges();
+                var order = db.Bestallning.Where(r => r.KundId == c.KundId);
+                var bestallningmatratt = db.BestallningMatratt.Where(r => r.Bestallning.KundId == c.KundId);
+
+                db.BestallningMatratt.RemoveRange(bestallningmatratt);
+                db.Bestallning.RemoveRange(order);
+                db.Kund.Remove(c);
+                db.SaveChanges();
             }
         }
     }

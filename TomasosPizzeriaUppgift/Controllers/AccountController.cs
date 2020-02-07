@@ -30,6 +30,7 @@ namespace TomasosPizzeriaUppgift.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();

@@ -34,7 +34,7 @@ namespace TomasosPizzeriaUppgift.Controllers
         }
         public IActionResult DeleteUser(string username)
         {
-            RoleAdminService.Instance.DeleteUser(username,Request,Response);           
+            RoleAdminService.Instance.DeleteUser(username,userManager,Request,Response);           
             return RedirectToAction("Users");
         }
         [HttpGet]

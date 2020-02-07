@@ -21,6 +21,7 @@ namespace TomasosPizzeriaUppgift.Interface
         void UpdateRoleForUser(string changeRoleTo, string id, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager);
         Task<IdentityResult> CreateRole(RoleManager<IdentityRole> roleManager, CreateRoleViewModel model);
         bool CheckIfUserISPremiumUser(RoleManager<IdentityRole> roleManager, System.Security.Claims.ClaimsPrincipal user);
+        void Delete(string userName, UserManager<IdentityUser> userManager);
 
 
     }

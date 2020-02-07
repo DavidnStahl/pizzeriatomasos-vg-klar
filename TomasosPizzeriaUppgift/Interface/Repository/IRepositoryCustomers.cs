@@ -10,6 +10,7 @@ namespace TomasosPizzeriaUppgift.Interface
     public interface IRepositoryCustomers
     {        
         void Create(Kund customer);
+        Kund GetByUsername(string userName);
         List<Kund> GetAll();
         void Update(Kund customer);
         void Delete(Kund customer);
