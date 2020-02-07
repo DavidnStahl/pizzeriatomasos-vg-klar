@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TomasosPizzeriaUppgift.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public IActionResult Index()

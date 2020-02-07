@@ -12,7 +12,7 @@ namespace TomasosPizzeriaUppgift.ViewModels
         public int id { get; set; }
         public List<Produkt> Ingredienses{ get; set; }
         [Required(ErrorMessage ="Maträtt måste ha ett namn")]
-        [StringLength(50,MinimumLength =2 ,ErrorMessage ="Minst 2 max 50 bokstäver")]
+        [StringLength(50,MinimumLength = 2 ,ErrorMessage ="Minst 2 max 50 bokstäver")]
         public string Matrattnamn { get; set; }
         public int MatrattstypID { get; set; }
         public List<Produkt> SelectedListItem { get; set; }

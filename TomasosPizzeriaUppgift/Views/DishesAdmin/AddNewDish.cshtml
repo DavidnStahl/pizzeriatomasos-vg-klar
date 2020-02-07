@@ -32,12 +32,9 @@
                 <span class="text-danger">Upptaget</span><br />
             }
 
-            @if (Model.Matrattsnamnlength == true)
-            {
-                <span class="text-danger">Minst 2 bokstäver långt</span><br />
-            }
-
-            <input type="text" asp-for="@Model.NewDish.Matratt.MatrattNamn" placeholder="Maträtt namn" autofocus maxlength="100" />
+            
+            <span asp-validation-for="@Model.NewDish.Matratt.MatrattNamn"></span><br />
+            <input type="text" asp-for="@Model.NewDish.Matratt.MatrattNamn" placeholder="Maträtt namn" autofocus maxlength="50" />
             <br />
 
             <label>Välj Maträtts typ</label>
@@ -60,7 +57,6 @@
             {
                 <span class="failer-login">Välj minst 1 ingrediens</span><br />
             }
-
             <select class="test" asp-for="@Model.NewDish.SelectedListItem">
                 @foreach (var item in Model.Ingredienses)
                 {

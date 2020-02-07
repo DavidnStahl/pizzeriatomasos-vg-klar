@@ -13,6 +13,7 @@ using TomasosPizzeriaUppgift.Services;
 
 namespace TomasosPizzeriaUppgift.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoleAdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -26,27 +27,23 @@ namespace TomasosPizzeriaUppgift.Controllers
         }
        
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult Users()
         {
             var model = RoleAdminService.Instance.GetAllUsers(roleManager,"All", userManager);
             return View(model);
         }
-        [Authorize(Roles = "Admin")]
         public IActionResult DeleteUser(string username)
         {
             RoleAdminService.Instance.DeleteUser(username,Request,Response);           
             return RedirectToAction("Users");
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult CreateRole()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult CreateRole(CreateRoleViewModel model)
         {
             if(ModelState.IsValid)
@@ -59,14 +56,11 @@ namespace TomasosPizzeriaUppgift.Controllers
             }
             return View();
         }
-       [Authorize(Roles = "Admin")]
-
         public IActionResult ChangeRoleTypeUser(string changeRoleTo, string id)
         {
             RoleAdminService.Instance.ChangeRoleTypeUser(changeRoleTo,id, userManager,roleManager);
             return RedirectToAction("Users");
         }
-        [Authorize(Roles = "Admin")]
         public IActionResult RoleTypeSearch(string roleNameToSearch)
         {
             var model = RoleAdminService.Instance.GetAllUsers(roleManager, roleNameToSearch, userManager);

@@ -12,16 +12,15 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TomasosPizzeriaUppgift.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DishesAdminController : Controller
     {
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult Menu()
         {
             var model = MenuService.Instance.GetMenuInfo();
             return View(model);
         }
-        [Authorize(Roles = "Admin")]
         public IActionResult DeleteDish(int id)
         {
             Services.DishesAdminService.Instance.DeleteDish(id);
@@ -29,14 +28,12 @@ namespace TomasosPizzeriaUppgift.Controllers
             return View("Menu", model);
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddNewDish()
         {
             var model = MenuService.Instance.GetMenuInfo();
             return View(model);
         }
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddNewDish(MenuPage model)
         {
             model = DishesAdminService.Instance.CheckMatrattsValidation(model);
@@ -51,14 +48,12 @@ namespace TomasosPizzeriaUppgift.Controllers
             return View(model);
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddIngrediens()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult AddIngrediens(Produkt produkt)
         {
             var result = DishesAdminService.Instance.AddIngrediens(produkt);
@@ -69,14 +64,12 @@ namespace TomasosPizzeriaUppgift.Controllers
             ViewBag.Message = "true";
             return View();
         }
-        [Authorize(Roles = "Admin")]
         public IActionResult RemoveIngrediens(int id)
         {
             DishesAdminService.Instance.RemoveIngrediens(id);
             return RedirectToAction("Menu");
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public IActionResult EditDish(int id)
         {
             var model = DishesAdminService.Instance.GetDishToUpdate(id);
@@ -84,7 +77,6 @@ namespace TomasosPizzeriaUppgift.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public IActionResult EditDish(UpdateDishViewModel model)
         {
             var oldmodel = DishesAdminService.Instance.GetDishToUpdate(model.id);

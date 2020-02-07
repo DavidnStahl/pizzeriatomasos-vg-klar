@@ -14,6 +14,7 @@ using TomasosPizzeriaUppgift.ViewModels;
 
 namespace TomasosPizzeriaUppgift.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
@@ -36,6 +37,7 @@ namespace TomasosPizzeriaUppgift.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Register(Kund model)
         {
             var validUsername = AccountService.Instance.CheckUserNameIsValid(model, Request);
@@ -55,6 +57,7 @@ namespace TomasosPizzeriaUppgift.Controllers
         }
         
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -62,6 +65,7 @@ namespace TomasosPizzeriaUppgift.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Login(LoginViewModel model)
         {           
             if (ModelState.IsValid)
@@ -75,15 +79,12 @@ namespace TomasosPizzeriaUppgift.Controllers
             return View(model);
         }        
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
-        [Authorize]
         [HttpGet]
-
         public ActionResult Update()
         {
             var customer = AccountService.Instance.GetInloggedCustomerInfo(Request);
@@ -91,7 +92,6 @@ namespace TomasosPizzeriaUppgift.Controllers
             return View(customer);
         }   
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateUser(Kund model)
         {

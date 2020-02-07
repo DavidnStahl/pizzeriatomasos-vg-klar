@@ -11,18 +11,17 @@ using TomasosPizzeriaUppgift.Services;
 
 namespace TomasosPizzeriaUppgift.Controllers
 {
+    [Authorize]
     public class PaymentController : Controller
     {
         // GET: /<controller>/
         [HttpGet]
-        [Authorize]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
         {
@@ -36,8 +35,6 @@ namespace TomasosPizzeriaUppgift.Controllers
             ViewBag.Error = "Inloggning Misslyckades";
             return View(model);
         }
-
-        [Authorize]
         public IActionResult Pay()
         {
             PaymentService.Instance.PayUser(Request, Response,User);

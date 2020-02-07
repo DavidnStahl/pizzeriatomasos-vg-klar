@@ -11,16 +11,15 @@ using TomasosPizzeriaUppgift.ViewComponenets;
 
 namespace TomasosPizzeriaUppgift.Controllers
 {
+    [Authorize]
     public class MenuController : Controller
     {
-        [Authorize]
         [HttpGet] 
         public IActionResult Menu()
         {
              var model = MenuService.Instance.MenuPageData(Request, Response);
             return View(model);
         }
-        [Authorize]
         [HttpPost]
         public IActionResult AddItemCustomerBasket(int id)
         {
@@ -28,7 +27,6 @@ namespace TomasosPizzeriaUppgift.Controllers
             //return PartialView("Menu", model);
             return ViewComponent("CustomerBasketComponent", model);
         }
-        [Authorize]
         public ActionResult RemoveItemCustomerBasket(int id, int count)
         {
             var model = MenuService.Instance.RemoveItemCustomerBasket(id, count, Request, Response);
