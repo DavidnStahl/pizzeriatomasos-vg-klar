@@ -113,9 +113,10 @@ namespace TomasosPizzeriaUppgift.Services
             };
             _repository.Create(matratt);
             var matrattbyid = _repository.GetDishByName(model.Matratt.MatrattNamn);
-            var matrattprodukt = new MatrattProdukt();
+            
             foreach(var item in model.SelectedListItem)
             {
+                var matrattprodukt = new MatrattProdukt();
                 matrattprodukt.MatrattId = matrattbyid.MatrattId;
                 matrattprodukt.ProduktId = item;
 
