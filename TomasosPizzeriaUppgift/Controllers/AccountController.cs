@@ -46,6 +46,11 @@ namespace TomasosPizzeriaUppgift.Controllers
                 return View("Register", model);
               
             }
+            else if(ModelState.IsValid && validUsername == false)
+            {
+                ViewBag.Data = "Användarnamn Upptaget";
+                return View(model);
+            }
             return View(model);
         }
         

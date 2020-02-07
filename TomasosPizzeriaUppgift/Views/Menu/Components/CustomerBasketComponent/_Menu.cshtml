@@ -36,9 +36,9 @@
                     <td>@item.MatrattNamn</td>
 
                     <td>@item.Pris kr, bonuspoäng</td>
-                    <td type="button" class="btn btn-danger text-white" style="width:auto">
-                        <a type="button" class="btn btn-success" asp-action="RemoveItemCustomerBasket" asp-controller="Menu" asp-route-id="@item.MatrattId" asp-route-count="@itemcount"
-                           data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#partialview">Lägg till</a>
+                    <td>
+                        <a type="button" class="btn btn-danger" style="width:auto" asp-action="RemoveItemCustomerBasket" asp-controller="Menu" asp-route-id="@item.MatrattId" asp-route-count="@itemcount"
+                           data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#partialview">Ta bort</a>
                     </td>
                 }
                 else
@@ -52,7 +52,7 @@
 
                         <td>@item.Pris kr</td>
                         <td>
-                            <a type="button" class="btn btn-danger" asp-action="RemoveItemCustomerBasket" asp-controller="Menu" asp-route-id="@item.MatrattId" asp-route-count="@itemcount"
+                            <a type="button" class="btn btn-danger" style="width:auto" asp-action="RemoveItemCustomerBasket" asp-controller="Menu" asp-route-id="@item.MatrattId" asp-route-count="@itemcount"
                                data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#partialview">Ta bort</a>
                         </td>
                     }

@@ -30,10 +30,10 @@
             <input type="text" placeholder="Email (Optional)" maxlength="50" asp-for="@Model.Email" />
 
             <input type="text" placeholder="Telefon (Optional)" maxlength="50" asp-for="@Model.Telefon" />
-            @if (ViewBag.Message == "Användarnamn Upptaget")
+            @if (ViewBag.Data == "Användarnamn Upptaget")
             {
                 <span class="failer-login" asp-validation-for="@Model.AnvandarNamn"></span>
-                <input class="used-username" type="text" value="@ViewBag.Message" maxlength="20" asp-for="@Model.AnvandarNamn" />
+                <input class="used-username" type="text" value="@ViewBag.Data" maxlength="20" asp-for="@Model.AnvandarNamn" />
             }
             else
             {

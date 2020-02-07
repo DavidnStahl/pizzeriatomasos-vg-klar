@@ -75,11 +75,11 @@ namespace TomasosPizzeriaUppgift.Models.Repository
         {
             using (TomasosContext db = new TomasosContext())
             {
-                db.Remove(_context.MatrattProdukt.Include(r => r.Produkt)
-                                                   .Select(r => r.Produkt)
-                                                   .Where(r => r.ProduktId == id)
-                                                   .FirstOrDefault())
-                                                   .Context.SaveChanges();
+                var ingrediensemodel = db.MatrattProdukt.Where(r => r.ProduktId == id);
+                var model = db.Produkt.FirstOrDefault(r => r.ProduktId == id);
+                db.MatrattProdukt.RemoveRange(ingrediensemodel);
+                db.Produkt.Remove(model);
+                db.SaveChanges();
             }
                  
         }
@@ -91,7 +91,10 @@ namespace TomasosPizzeriaUppgift.Models.Repository
                                        .Include(r => r.BestallningMatratt)
                                        .FirstOrDefault(r => r.MatrattId == id);
 
-                db.Matratt.Remove(dish).Context.SaveChanges();
+                db.MatrattProdukt.RemoveRange(dish.MatrattProdukt.ToList());
+                db.BestallningMatratt.RemoveRange(dish.BestallningMatratt.ToList());
+                db.Matratt.Remove(dish);
+                db.SaveChanges();
             }
                 
 

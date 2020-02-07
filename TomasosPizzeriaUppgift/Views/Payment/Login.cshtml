@@ -10,7 +10,7 @@
 <div class="text-center">
 
     <form class="login" asp-controller="Payment" asp-action="Login" method="post">
-        <span class="failer-login">@ViewBag.Error</span>
+        <h2>Logga in för att betala</h2>
         <span class="failer-login" asp-validation-for="Username"></span>
         <input type="text" placeholder="Användarnamn" asp-for="Username">
         <span class="failer-login" asp-validation-for="Password"></span>
